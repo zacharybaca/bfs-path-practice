@@ -23,7 +23,30 @@ function findNeighbors(node, matrix) {
 
 
 function bfsPath(matrix, startNode, endValue) {
-    
+    //Create a queue. Create a separate array containing the starting node. Enqueue this array. The enqueued array is the current path.
+    const queue = [[startNode]];
+    //Create a set to store visited nodes
+    const visited = new Set();
+    //While the queue is not empty, repeat steps 4-6
+    while (queue.length) {
+    //Dequeue the first path, and save it in a variable
+    let currentPath = queue.shift();
+    //Save the last node in the path in a variable (DO NOT pop it)
+    let lastNode = currentPath[currentPath.length - 1];
+    //IS THIS NODE THE THING? If so, stop and return a result. Else, continue.
+    if (lastNode === endValue) return lastNode;
+    //For each unvisited neighbor of the last node:
+    for (let neighbor of neighbors) {
+        if (!visited.has(neighbor) {
+        //Add it to the visited nodes set
+        visited.add(neighbor);
+        //Copy the saved path, and add the neighbor to the end. Enqueue this new path
+        queue.push(...currentPath, neighbor);
+        }
+    }
+    //If the queue has become empty without finding the thing, then the thing has not been found. Return false, an error, or a message as appropriate for the problem you are solving.
+    }
+  return false;
 }
 
 
